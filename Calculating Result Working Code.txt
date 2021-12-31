@@ -1,0 +1,38 @@
+using SMS.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace SMS.Controllers
+{
+    public class StudentController : Controller
+    {
+        // GET: Student
+        public ActionResult Index()
+        {
+            return View(new marks());
+        }
+        [HttpPost]
+        public ActionResult Index(marks m)
+        {
+            m.tot = m.course1 + m.course2 + m.course3 + m.course4;
+            m.avg = m.tot / 4;
+            if(m.avg >60)
+            {
+                m.grade = "Pass";
+
+
+            }
+
+            else
+            {
+
+                m.grade = "Fail";
+            }
+            return View(m);
+        }
+        
+    }
+}
